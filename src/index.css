@@ -1,13 +1,90 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  padding: 0;
+  box-sizing: border-box; }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+html {
+  font-size: 62.5%; }
+
+body {
+  background-color: #333;
+  color: #eee; }
+
+.date-input {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  text-align: center; }
+  .date-input__input {
+    background-color: transparent;
+    color: #eee;
+    border: none;
+    outline: none;
+    font-size: 4rem;
+    text-align: center;
+    margin: 0 1rem;
+    border-bottom: .2rem solid grey; }
+  .date-input__label {
+    margin-top: .4rem;
+    font-size: 2rem;
+    text-transform: capitalize;
+    color: steelblue; }
+
+.create-event {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.submit-btn {
+  background-color: steelblue;
+  border: none;
+  padding: 1rem 3rem;
+  height: 4rem;
+  border-radius: 3px;
+  color: #eee;
+  text-transform: uppercase;
+  margin-left: 2rem; }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  color: rgba(238, 238, 238, 0.8);
+  padding: 1rem; }
+
+.header {
+  padding: 1rem;
+  width: 100%;
+  font-size: 2rem;
+  color: steelblue; }
+
+.section {
+  margin: 3rem 1rem; }
+
+.tasks {
+  text-transform: capitalize; }
+  .tasks__title {
+    display: inline-block;
+    margin: 1rem 0;
+    font-size: 2rem;
+    font-weight: 100;
+    text-transform: capitalize;
+    border-bottom: .1rem solid grey;
+    width: 100%; }
+  .tasks__row {
+    display: flex;
+    align-items: center;
+    font-size: 2rem; }
+  .tasks__col {
+    padding: 1rem;
+    width: 20rem; }
+  .tasks__checkbox {
+    width: 12rem;
+    text-align: center; }
+  .tasks__completed-info {
+    width: 30rem; }
+
+.task input {
+  margin-left: 1rem; }

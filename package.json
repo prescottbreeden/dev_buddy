@@ -12,10 +12,18 @@
     "@types/react-dom": "^16.9.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "precommit": "lint-staged",
+    "getstart": "yarn & node-sass src/sass/main.scss src/index.css & react-scripts start",
+    "test:ci": "react-scripts test --watchAll=false --reporters=default --reporters=jest-junit",
+    "coverage": "react-scripts test --coverage --watchAll",
+    "watch:sass": "node-sass src/sass/main.scss src/index.css -w",
+    "compile:sass": "node-sass src/sass/main.scss src/index.css",
+    "prettier": "prettier --write \"**/*.{js,ts,jsx,tsx,json,md}\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -35,5 +43,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-redux": "^7.1.7",
+    "husky": "^4.2.5",
+    "node-sass": "^4.14.0",
+    "prettier": "^2.0.5"
   }
 }
