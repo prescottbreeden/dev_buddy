@@ -11,6 +11,21 @@ const NotePad: React.FC<NotePadProps> = (props) => {
   const { task } = props;
 
   const [card, setCard] = useState("stats");
+  const cards = [ 'description', 'notes', 'stats' ];
+
+  const handleCardChange = (view: string) => {
+    if (card === view) {
+      const index = cards.indexOf(view);
+      /* console.log('current card', card); */
+      /* console.log('view', view) */
+      /* console.log('index', index); */
+      if (index > -1 && index < cards.length - 1) {
+        setCard(cards[index + 1])
+      }
+    } else {
+      setCard(view);
+    }
+  }
 
   const viewCard = (view: string) => {
     return card === view
@@ -21,7 +36,7 @@ const NotePad: React.FC<NotePadProps> = (props) => {
   return (
     <div className="notepad">
       <div className="notepad__header"
-        onClick={() => setCard('description')}
+        onClick={() => handleCardChange('description')}
       >
         <h3 className="notepad__title">Description</h3>
       </div>
@@ -33,7 +48,7 @@ const NotePad: React.FC<NotePadProps> = (props) => {
       />
       <div 
         className="notepad__header" 
-        onClick={() => setCard('notes')}
+        onClick={() => handleCardChange('notes')}
       >
         <h3 className="notepad__title">Notepad</h3>
       </div>
@@ -44,7 +59,7 @@ const NotePad: React.FC<NotePadProps> = (props) => {
         style={viewCard('notes')}
       />
       <div className="notepad__header"
-        onClick={() => setCard('stats')}
+        onClick={() => handleCardChange('stats')}
       >
         <h3 className="notepad__title">Stats</h3>
       </div>

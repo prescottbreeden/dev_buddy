@@ -1,6 +1,6 @@
 import React from "react";
 import { TaskType } from "../types/TaskType.type";
-import {setCurrentTask, SET_CURRENT_TASK } from "../redux/actions/currenttask.actions";
+import {SET_CURRENT_TASK } from "../redux/actions/currenttask.actions";
 import {connect, useDispatch} from "react-redux";
 import {getCurrentTask} from "../redux/selectors/tasks.selectors";
 
@@ -31,7 +31,11 @@ const Task: React.FC<TaskProps> = (props) => {
 
 
   return (
-    <div className="tasks__row" onClick={updateCurrentTask}>
+    <div 
+      className="tasks__row" 
+      onClick={updateCurrentTask}
+      style={isCurrentTask() ? { border: '.1rem solid steelblue'}: {}}
+    >
       <div className="tasks__col">
         <p className="task__name">{task && task.name}</p>
       </div>

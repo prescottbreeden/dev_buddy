@@ -12,7 +12,7 @@ const Tasks: React.FC<TasksProps> = (props) => {
 
   return (
     <div className="tasks">
-      <div className="tasks__row tasks__header">
+      <div className="tasks__header">
         <div className="tasks__col">
           <p className="tasks__title">Tasks to complete</p>
         </div>

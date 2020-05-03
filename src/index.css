@@ -50,7 +50,7 @@ body {
     text-align: center;
     border-bottom: 1px solid grey; }
     .notepad__title:hover {
-      cursor: pointer; }
+      cursor: grab; }
   .notepad__notes {
     background-color: #eee;
     font-size: 1.6rem;
@@ -96,7 +96,15 @@ body {
   margin-left: 2rem; }
 
 .tasks {
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  padding-left: 1.2rem; }
+  .tasks__header {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 100;
+    border: 1px solid transparent;
+    cursor: default; }
   .tasks__title {
     display: inline-block;
     margin: 1rem 0;
@@ -109,7 +117,8 @@ body {
     display: flex;
     align-items: center;
     font-size: 1.8rem;
-    font-weight: 100; }
+    font-weight: 100;
+    border: 1px solid transparent; }
     .tasks__row:hover {
       border: 1px solid steelblue; }
   .tasks__col {
@@ -145,6 +154,3 @@ body {
   font-size: 2rem;
   color: steelblue;
   height: 10rem; }
-
-.section {
-  margin: 3rem 1rem; }
