@@ -12,12 +12,12 @@ interface TaskProps {
 }
 
 const Task: React.FC<TaskProps> = (props) => {
+  const dispatch = useDispatch();
   const {
     currentTask,
     onChange,
     task,
   } = props;
-  const dispatch = useDispatch();
 
   const updateCurrentTask = () => {
     dispatch({ type: SET_CURRENT_TASK, payload: task});
@@ -30,10 +30,6 @@ const Task: React.FC<TaskProps> = (props) => {
     return false;
   };
 
-  const handleChange = (data: Partial<TaskType>) => {
-    onChange(task, data);
-  }
-
   return (
     <div 
       className="tasks__row" 
@@ -44,7 +40,7 @@ const Task: React.FC<TaskProps> = (props) => {
         <Input 
           name="name"
           className="task__input"
-          onChange={handleChange}
+          onChange={onChange(task)}
           value={task && task.name}
         />
         <p className="task__name">{task && task.name}</p>
@@ -96,9 +92,4 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-const dispatchProps = { };
-
-export default connect(
-  mapStateToProps,
-  dispatchProps,
-)(Task);
+export default connect(mapStateToProps)(Task);

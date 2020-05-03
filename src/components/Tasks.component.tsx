@@ -4,21 +4,22 @@ import { TaskType } from "../types/TaskType.type";
 import {getTasks} from "../redux/selectors/tasks.selectors";
 import {mergeObjects, insertItem} from "../util/misc";
 import {SET_TASKS} from "../redux/actions/tasks.actions";
+import {curry, pipe } from "ramda";
 import Task from "./Task.component";
 
 type TasksProps = {
   tasks?: TaskType[];
 };
 const Tasks: React.FC<TasksProps> = (props) => {
-  const { tasks } = props;
   const dispatch = useDispatch();
+  const { tasks } = props;
 
-  const handleTaskChange = (task: TaskType, data: Partial<TaskType>) => {
-    const updatedData = mergeObjects(task, data);
-    console.log(updatedData);
-    const payload = insertItem<TaskType>(tasks, updatedData, 'id');
-    dispatch({ type: SET_TASKS, payload });
-  }
+  const handleTaskChange = curry((task: TaskType, data: Partial<TaskType>) => {
+    if (tasks) {
+      const mergeAndUpsert = pipe(mergeObjects(task), insertItem(tasks, 'id'));
+      dispatch({ type: SET_TASKS, payload: mergeAndUpsert(data) });
+    }
+  });
 
   return (
     <div className="tasks">
@@ -64,7 +65,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(Tasks);
+export default connect(mapStateToProps)(Tasks);

@@ -5,10 +5,12 @@ import { curry } from 'ramda';
  * @param data the partial of data to update object with
  * @returns new object with updated properties
  */
-export const mergeObjects = <T>(obj1: T, obj2: Partial<T>): T => {
-  return {
-    ...obj1,
-    ...obj2,
+export const mergeObjects = <T>(obj1: T) => {
+  return function(obj2: Partial<T>) {
+    return {
+      ...obj1,
+      ...obj2,
+    };
   };
 };
 
@@ -31,11 +33,11 @@ export const extract = curry((property: string, object: any) => {
  * @returns a new array containing the original items and the new item.
  */
 export const insertItem = <T>(
-  array: T[] | undefined,
-  payload: T,
+  array: T[],
   k: keyof T,
-): T[] => {
-  if (!array) return [];
-  return array.map((item: T) => item[k] === payload[k] ? payload : item);
+) => {
+  return function(payload: T) {
+    return array.map((item: T) => item[k] === payload[k] ? payload : item);
+  }
 };
 
