@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const Footer: React.FC = () => {
   return (
@@ -7,4 +7,4 @@ export const Footer: React.FC = () => {
       <p>Rubber baby buggy bumpers</p>
     </div>
   );
-}
+};

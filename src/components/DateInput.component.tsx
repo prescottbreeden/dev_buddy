@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 type DateInputProps = {
   name: string;
   value: number;
   onChange?: Function;
-}
+};
 
 const DateInput: React.FC<DateInputProps> = (props) => {
   const { name, value } = props;
@@ -16,14 +16,11 @@ const DateInput: React.FC<DateInputProps> = (props) => {
         type="text"
         value={value}
       />
-      <label 
-        className="date-input__label"
-        htmlFor=""
-      >
+      <label className="date-input__label" htmlFor="">
         {name}
       </label>
     </div>
   );
-}
+};
 
 export default DateInput;

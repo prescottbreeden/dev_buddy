@@ -10,6 +10,12 @@ body {
   background-color: #333;
   color: #eee; }
 
+.create-event {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
 .date-input {
   display: flex;
   flex-direction: column;
@@ -30,11 +36,28 @@ body {
     text-transform: capitalize;
     color: steelblue; }
 
-.create-event {
-  width: 100%;
+.notepad {
+  height: 100%;
+  width: 50rem;
+  border: .1rem solid grey; }
+  .notepad__title {
+    font-size: 2rem;
+    font-weight: 100;
+    letter-spacing: 1px;
+    padding: .5rem;
+    text-align: center;
+    height: 3.5rem; }
+  .notepad__notes {
+    background-color: #eee;
+    font-size: 1.6rem;
+    height: calc(100% - 3.5rem);
+    color: black;
+    padding: 1rem; }
+
+.container {
   display: flex;
-  flex-direction: row;
-  align-items: center; }
+  border: 1px solid yellow;
+  height: calc(100vh - 13rem); }
 
 .submit-btn {
   background-color: steelblue;
@@ -46,25 +69,10 @@ body {
   text-transform: uppercase;
   margin-left: 2rem; }
 
-.footer {
-  position: fixed;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
-  color: rgba(238, 238, 238, 0.8);
-  padding: 1rem; }
-
-.header {
-  padding: 1rem;
-  width: 100%;
-  font-size: 2rem;
-  color: steelblue; }
-
-.section {
-  margin: 3rem 1rem; }
-
 .tasks {
   text-transform: capitalize; }
+  .tasks__header {
+    border: 1px dashed grey; }
   .tasks__title {
     display: inline-block;
     margin: 1rem 0;
@@ -76,7 +84,8 @@ body {
   .tasks__row {
     display: flex;
     align-items: center;
-    font-size: 2rem; }
+    font-size: 1.8rem;
+    font-weight: 100; }
   .tasks__col {
     padding: 1rem;
     width: 20rem; }
@@ -84,7 +93,32 @@ body {
     width: 12rem;
     text-align: center; }
   .tasks__completed-info {
-    width: 30rem; }
+    width: 15rem; }
+  .tasks__icon {
+    width: 8rem;
+    text-align: center;
+    position: relative; }
+    .tasks__icon--svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: steelblue; }
 
-.task input {
-  margin-left: 1rem; }
+.footer {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  color: rgba(238, 238, 238, 0.8);
+  height: 3rem; }
+
+.header {
+  padding: 1rem;
+  width: 100%;
+  font-size: 2rem;
+  color: steelblue;
+  height: 10rem; }
+
+.section {
+  margin: 3rem 1rem; }

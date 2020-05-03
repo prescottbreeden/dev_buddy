@@ -1,19 +1,13 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
-const rootReducer = combineReducers({
-  
-});
+const rootReducer = combineReducers({});
 
-const coreMiddleware: any = [
+const coreMiddleware: any = [];
 
-];
-
-const featureMiddleware: any = [
-
-];
+const featureMiddleware: any = [];
 
 const enhancer = compose(
   applyMiddleware(...featureMiddleware, ...coreMiddleware)
-)
+);
 
-export const store = createStore( rootReducer, {}, enhancer );
+export const store = createStore(rootReducer, {}, enhancer);

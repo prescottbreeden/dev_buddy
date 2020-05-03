@@ -1,26 +1,17 @@
-import React from 'react';
-import Task from './Task.component';
-import {connect} from 'react-redux';
-
-export interface TaskType {
-  name: string;
-  relatedFeature: string;
-  priority: number;
-  started: boolean;
-  completed: boolean;
-  startDate?: Date;
-  completedDate?: Date;
-};
+import React from "react";
+import { connect } from "react-redux";
+import { TaskType } from "../types/TaskType.type";
+import Task from "./Task.component";
 
 type TasksProps = {
   tasks?: TaskType[];
-}
+};
 const Tasks: React.FC<TasksProps> = (props) => {
   const { tasks } = props;
 
   return (
     <div className="tasks">
-      <div className="tasks__row">
+      <div className="tasks__row tasks__header">
         <div className="tasks__col">
           <p className="tasks__title">Tasks to complete</p>
         </div>
@@ -31,50 +22,31 @@ const Tasks: React.FC<TasksProps> = (props) => {
           <p className="tasks__title">Started</p>
         </div>
         <div className="tasks__col tasks__checkbox">
+          <p className="tasks__title">Blocked</p>
+        </div>
+        <div className="tasks__col tasks__checkbox">
           <p className="tasks__title">Completed</p>
         </div>
         <div className="tasks__col tasks__completed-info">
           <p className="tasks__title">Completed on</p>
         </div>
+        <div className="tasks__col tasks__icon">
+          <p className="tasks__title">Active</p>
+        </div>
       </div>
-      {tasks && tasks.map((task: any) => {
-        return <Task {...task} />;
-      })}
+      {tasks &&
+        tasks.map((task: any, index: number) => {
+          return <Task key={index} index={index} {...task} />;
+        })}
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = () => {
-  const tasks: TaskType[] = [
-    { 
-      name: 'dingoes',
-      relatedFeature: 'dashboard',
-      priority: 1,
-      started: true,
-      completed: true,
-      startDate: new Date(Date.now()),
-      completedDate: new Date(Date.now()),
-    },
-    {
-      name: 'llamas',
-      relatedFeature: 'dashboard',
-      priority: 1,
-      started: true,
-      completed: false,
-      completedDate: undefined,
-    },
-    { 
-      name: 'flamingos',
-      relatedFeature: 'dashboard',
-      priority: 1,
-      started: false,
-      completed: false,
-      completedDate: undefined,
-    },
-  ]
+  const tasks: TaskType[] = [];
   return {
-    tasks
-  }
-}
+    tasks,
+  };
+};
 
 export default connect(mapStateToProps, null)(Tasks);

@@ -1,0 +1,28 @@
+.notepad {
+  height: 100%;
+  width: 50rem;
+  border: .1rem solid grey;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 100;
+    letter-spacing: 1px;
+    padding: .5rem;
+    text-align: center;
+    height: 3.5rem;
+  }
+
+  &__notes {
+    background-color: #eee;
+    font-size: 1.6rem;
+    height: calc(100% - 3.5rem);
+    color: black;
+    padding: 1rem;
+  }
+}
+
+.container {
+  display: flex;
+  border: 1px solid yellow;
+  height: calc(100vh - 13rem);
+}

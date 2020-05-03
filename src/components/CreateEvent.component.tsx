@@ -1,5 +1,5 @@
-import React from 'react';
-import DateInput from './DateInput.component';
+import React from "react";
+import DateInput from "./DateInput.component";
 
 const CreateEvent: React.FC = () => {
   return (
@@ -10,6 +10,6 @@ const CreateEvent: React.FC = () => {
       <button className="submit-btn">Create</button>
     </div>
   );
-}
+};
 
 export default CreateEvent;

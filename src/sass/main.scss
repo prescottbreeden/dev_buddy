@@ -7,7 +7,11 @@
 @import 'base/typography';
 @import 'base/utilities';
 
+@import 'components/create-event';
 @import 'components/date-input';
+@import 'components/notepad';
+@import 'components/submit-btn';
+@import 'components/tasks';
 
 @import 'layouts/footer';
 @import 'layouts/header';
