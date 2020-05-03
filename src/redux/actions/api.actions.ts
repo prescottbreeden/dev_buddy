@@ -26,3 +26,11 @@ export const apiSuccess = ({ response, feature }: any) => {
     meta: { feature },
   };
 };
+
+export const apiError = ({ response, feature }: any) => {
+  return {
+    type: `${feature} ${API_ERROR}`,
+    payload: response,
+    meta: { feature },
+  };
+};

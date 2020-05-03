@@ -46,8 +46,11 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.7",
+    "@types/redux-devtools": "^3.0.47",
     "husky": "^4.2.5",
     "node-sass": "^4.14.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "redux-devtools": "^3.5.0",
+    "redux-devtools-inspector": "^0.11.3"
   }
 }
