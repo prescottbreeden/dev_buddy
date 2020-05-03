@@ -61,4 +61,15 @@
       color: steelblue;
     }
   }
+
+  &__add-btn {
+    background-color: green;
+    border: none;
+    outline: none;
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    color: #eee;
+    text-transform: capitalize;
+    font-size: 2rem;
+  }
 }

@@ -1,4 +1,4 @@
-import {TaskPayload} from "../../types/TaskPayload.type";
+import {TaskType} from "../../types/TaskType.type";
 
 // feature name
 export const TASKS = '[Tasks]';
@@ -8,7 +8,7 @@ export const FETCH_TASKS = `${TASKS} FETCH`;
 export const SET_TASKS = `${TASKS} SET`;
 
 // action creators
-export const setTasks = ({tasks}: TaskPayload) => {
+export const setTasks = (tasks: TaskType[]) => {
   return {
     type: SET_TASKS,
     payload: tasks,

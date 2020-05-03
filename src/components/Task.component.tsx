@@ -3,9 +3,10 @@ import { TaskType } from "../types/TaskType.type";
 import {SET_CURRENT_TASK } from "../redux/actions/currenttask.actions";
 import {connect, useDispatch} from "react-redux";
 import {getCurrentTask} from "../redux/selectors/tasks.selectors";
+import Input from "./Input.component";
 
 interface TaskProps {
-  index: number;
+  onChange: Function;
   currentTask: TaskType;
   task: TaskType;
 }
@@ -13,8 +14,8 @@ interface TaskProps {
 const Task: React.FC<TaskProps> = (props) => {
   const {
     currentTask,
+    onChange,
     task,
-    index,
   } = props;
   const dispatch = useDispatch();
 
@@ -27,8 +28,11 @@ const Task: React.FC<TaskProps> = (props) => {
       return currentTask.id === task.id;
     }
     return false;
-  }
+  };
 
+  const handleChange = (data: Partial<TaskType>) => {
+    onChange(task, data);
+  }
 
   return (
     <div 
@@ -37,6 +41,12 @@ const Task: React.FC<TaskProps> = (props) => {
       style={isCurrentTask() ? { border: '.1rem solid steelblue'}: {}}
     >
       <div className="tasks__col">
+        <Input 
+          name="name"
+          className="task__input"
+          onChange={handleChange}
+          value={task && task.name}
+        />
         <p className="task__name">{task && task.name}</p>
       </div>
       <div className="tasks__col">

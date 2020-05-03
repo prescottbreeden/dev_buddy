@@ -24,7 +24,7 @@ export const tasksMiddleware = () => (next: Function) => (action: BaseAction) =>
       break;
 
     case `${TASKS} ${API_SUCCESS}`:
-      next(setTasks({tasks: action.payload}));
+      next(setTasks(action.payload));
       next(setLoader({state: false, feature: TASKS}));
       break;
 
