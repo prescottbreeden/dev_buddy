@@ -1,6 +1,6 @@
-import React from 'react';
-import Label from './Label.component';
-import {curry} from 'ramda';
+import React from "react";
+import Label from "./Label.component";
+import { curry } from "ramda";
 
 type InputProps = {
   className: string;
@@ -41,7 +41,7 @@ export const Input: React.FC<InputProps> = (props) => {
     } = {};
 
     const value =
-      type === 'number' ? Number(event.target.value) : event.target.value;
+      type === "number" ? Number(event.target.value) : event.target.value;
 
     data[name] = value;
     onChange && onChange(data, name, value);

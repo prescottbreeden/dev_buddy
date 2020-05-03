@@ -1,7 +1,7 @@
-import {TaskType} from "../../types/TaskType.type";
+import { TaskType } from "../../types/TaskType.type";
 
 // feature name
-export const TASKS = '[Tasks]';
+export const TASKS = "[Tasks]";
 
 // action types
 export const FETCH_TASKS = `${TASKS} FETCH`;

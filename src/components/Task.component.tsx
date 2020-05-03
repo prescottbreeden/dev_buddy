@@ -1,8 +1,8 @@
 import React from "react";
 import { TaskType } from "../types/TaskType.type";
-import {SET_CURRENT_TASK } from "../redux/actions/currenttask.actions";
-import {connect, useDispatch} from "react-redux";
-import {getCurrentTask} from "../redux/selectors/tasks.selectors";
+import { SET_CURRENT_TASK } from "../redux/actions/currenttask.actions";
+import { connect, useDispatch } from "react-redux";
+import { getCurrentTask } from "../redux/selectors/tasks.selectors";
 import Input from "./Input.component";
 
 interface TaskProps {
@@ -13,14 +13,10 @@ interface TaskProps {
 
 const Task: React.FC<TaskProps> = (props) => {
   const dispatch = useDispatch();
-  const {
-    currentTask,
-    onChange,
-    task,
-  } = props;
+  const { currentTask, onChange, task } = props;
 
   const updateCurrentTask = () => {
-    dispatch({ type: SET_CURRENT_TASK, payload: task});
+    dispatch({ type: SET_CURRENT_TASK, payload: task });
   };
 
   const isCurrentTask = () => {
@@ -31,13 +27,13 @@ const Task: React.FC<TaskProps> = (props) => {
   };
 
   return (
-    <div 
-      className="tasks__row" 
+    <div
+      className="tasks__row"
       onClick={updateCurrentTask}
-      style={isCurrentTask() ? { border: '.1rem solid steelblue'}: {}}
+      style={isCurrentTask() ? { border: ".1rem solid steelblue" } : {}}
     >
       <div className="tasks__col">
-        <Input 
+        <Input
           name="name"
           className="task__input"
           onChange={onChange(task)}
@@ -89,7 +85,7 @@ const mapStateToProps = (state: any) => {
   const currentTask = getCurrentTask(state);
   return {
     currentTask,
-  }
+  };
 };
 
 export default connect(mapStateToProps)(Task);

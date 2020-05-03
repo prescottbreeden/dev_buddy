@@ -1,6 +1,6 @@
-import {SET_CURRENT_TASK} from "../actions/currenttask.actions";
+import { SET_CURRENT_TASK } from "../actions/currenttask.actions";
 
-const initState = { };
+const initState = {};
 
 export const currentTaskReducer = (currentTask = initState, action: any) => {
   switch (true) {

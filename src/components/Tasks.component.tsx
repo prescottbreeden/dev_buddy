@@ -1,10 +1,10 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
 import { TaskType } from "../types/TaskType.type";
-import {getTasks} from "../redux/selectors/tasks.selectors";
-import {mergeObjects, insertItem} from "../util/misc";
-import {SET_TASKS} from "../redux/actions/tasks.actions";
-import {curry, pipe } from "ramda";
+import { getTasks } from "../redux/selectors/tasks.selectors";
+import { mergeObjects, insertItem } from "../util/misc";
+import { SET_TASKS } from "../redux/actions/tasks.actions";
+import { curry, pipe } from "ramda";
 import Task from "./Task.component";
 
 type TasksProps = {
@@ -16,7 +16,7 @@ const Tasks: React.FC<TasksProps> = (props) => {
 
   const handleTaskChange = curry((task: TaskType, data: Partial<TaskType>) => {
     if (tasks) {
-      const mergeAndUpsert = pipe(mergeObjects(task), insertItem(tasks, 'id'));
+      const mergeAndUpsert = pipe(mergeObjects(task), insertItem(tasks, "id"));
       dispatch({ type: SET_TASKS, payload: mergeAndUpsert(data) });
     }
   });

@@ -1,5 +1,5 @@
 // feature name
-export const CURRENT_TASK = '[CURRENT_TASK]';
+export const CURRENT_TASK = "[CURRENT_TASK]";
 
 // action types
 export const SET_CURRENT_TASK = `${CURRENT_TASK} SET`;
@@ -11,4 +11,3 @@ export const setCurrentTask = (task: any) => {
     payload: task,
   };
 };
-

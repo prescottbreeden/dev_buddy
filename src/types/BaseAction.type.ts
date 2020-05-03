@@ -7,4 +7,4 @@ export interface BaseAction {
     method: string;
     feature: string;
   };
-};
+}
