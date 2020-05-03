@@ -5,10 +5,10 @@ export const CURRENT_TASK = '[CURRENT_TASK]';
 export const SET_CURRENT_TASK = `${CURRENT_TASK} SET`;
 
 // action creators
-export const setCurrentTask = (taskId: string) => {
+export const setCurrentTask = (task: any) => {
   return {
     type: SET_CURRENT_TASK,
-    payload: taskId,
+    payload: task,
   };
 };
 

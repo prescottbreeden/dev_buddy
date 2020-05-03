@@ -1,5 +1,6 @@
 import { SET_TASKS } from "../actions/tasks.actions";
 import { TaskType } from "../../types/TaskType.type";
+import {SET_CURRENT_TASK} from "../actions/currenttask.actions";
 
 const initState: TaskType[] = [
   {

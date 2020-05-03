@@ -48,14 +48,19 @@ body {
     text-align: center;
     height: 3.5rem; }
   .notepad__notes {
+    width: 100%;
     background-color: #eee;
     font-size: 1.6rem;
     height: calc(100% - 3.5rem);
     color: black;
-    padding: 1rem; }
+    padding: 1rem;
+    resize: none;
+    font-family: fantasy;
+    letter-spacing: 1px; }
 
 .container {
   display: flex;
+  justify-content: space-between;
   border: 1px solid yellow;
   height: calc(100vh - 13rem); }
 
@@ -71,8 +76,6 @@ body {
 
 .tasks {
   text-transform: capitalize; }
-  .tasks__header {
-    border: 1px dashed grey; }
   .tasks__title {
     display: inline-block;
     margin: 1rem 0;
@@ -86,6 +89,8 @@ body {
     align-items: center;
     font-size: 1.8rem;
     font-weight: 100; }
+    .tasks__row:hover {
+      border: 1px solid steelblue; }
   .tasks__col {
     padding: 1rem;
     width: 20rem; }

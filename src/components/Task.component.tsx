@@ -1,28 +1,42 @@
 import React from "react";
 import { TaskType } from "../types/TaskType.type";
+import {setCurrentTask, SET_CURRENT_TASK } from "../redux/actions/currenttask.actions";
+import {connect, useDispatch} from "react-redux";
+import {getCurrentTask} from "../redux/selectors/tasks.selectors";
 
-interface TaskProps extends TaskType {
-  index: any;
+interface TaskProps {
+  index: number;
+  currentTask: TaskType;
+  task: TaskType;
 }
 
 const Task: React.FC<TaskProps> = (props) => {
   const {
-    blocked,
-    name,
-    relatedFeature,
-    started,
-    completed,
-    completedDate,
+    currentTask,
+    task,
     index,
   } = props;
+  const dispatch = useDispatch();
+
+  const updateCurrentTask = () => {
+    dispatch({ type: SET_CURRENT_TASK, payload: task});
+  };
+
+  const isCurrentTask = () => {
+    if (currentTask && task) {
+      return currentTask.id === task.id;
+    }
+    return false;
+  }
+
 
   return (
-    <div className="tasks__row">
+    <div className="tasks__row" onClick={updateCurrentTask}>
       <div className="tasks__col">
-        <p className="task__name">{name}</p>
+        <p className="task__name">{task && task.name}</p>
       </div>
       <div className="tasks__col">
-        <p className="task__name">{relatedFeature}</p>
+        <p className="task__name">{task && task.relatedFeature}</p>
       </div>
       <div className="tasks__col tasks__checkbox">
         <input
@@ -30,7 +44,7 @@ const Task: React.FC<TaskProps> = (props) => {
           className="checkbox"
           type="checkbox"
           onChange={() => null}
-          checked={started}
+          checked={task && task.started}
         />
       </div>
       <div className="tasks__col tasks__checkbox">
@@ -39,7 +53,7 @@ const Task: React.FC<TaskProps> = (props) => {
           className="checkbox"
           type="checkbox"
           onChange={() => null}
-          checked={blocked}
+          checked={task && task.blocked}
         />
       </div>
       <div className="tasks__col tasks__checkbox">
@@ -48,17 +62,29 @@ const Task: React.FC<TaskProps> = (props) => {
           className="checkbox"
           type="checkbox"
           onChange={() => null}
-          checked={completed}
+          checked={task && task.completed}
         />
       </div>
       <div className="tasks__col tasks__completed-info">
-        <p className="task__name">{completedDate?.toDateString()}</p>
+        <p className="task__name">{task.completedDate?.toDateString()}</p>
       </div>
       <div className="tasks__col tasks__icon">
-        {index === 0 && <h1 className="tasks__icon--svg">></h1>}
+        {isCurrentTask() && <h1 className="tasks__icon--svg">></h1>}
       </div>
     </div>
   );
 };
 
-export default Task;
+const mapStateToProps = (state: any) => {
+  const currentTask = getCurrentTask(state);
+  return {
+    currentTask,
+  }
+};
+
+const dispatchProps = { };
+
+export default connect(
+  mapStateToProps,
+  dispatchProps,
+)(Task);

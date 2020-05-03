@@ -14,9 +14,6 @@ function App() {
       <div className="container">
         <div className="main-area">
           <div className="section">
-            <CreateEvent />
-          </div>
-          <div className="section">
             <Tasks />
           </div>
         </div>

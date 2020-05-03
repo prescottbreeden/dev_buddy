@@ -2,7 +2,7 @@
   text-transform: capitalize;
 
   &__header {
-    border: 1px dashed grey;
+    // border: 1px dashed grey;
   }
 
   &__title {
@@ -20,6 +20,10 @@
     align-items: center;
     font-size: 1.8rem;
     font-weight: 100;
+    
+    &:hover {
+      border: 1px solid steelblue;
+    }
   }
 
   &__col {

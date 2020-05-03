@@ -37,7 +37,7 @@ const Tasks: React.FC<TasksProps> = (props) => {
       </div>
       {tasks &&
         tasks.map((task: any, index: number) => {
-          return <Task key={index} index={index} {...task} />;
+          return <Task key={index} index={index} task={task} />;
         })}
     </div>
   );
@@ -45,7 +45,6 @@ const Tasks: React.FC<TasksProps> = (props) => {
 
 const mapStateToProps = (state: any) => {
   const tasks = getTasks(state);
-  console.log(tasks);
 
   return {
     tasks,

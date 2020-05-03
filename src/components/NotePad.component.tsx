@@ -4,12 +4,11 @@ import { getCurrentTask } from "../redux/selectors/tasks.selectors";
 import { TaskType } from "../types/TaskType.type";
 import {setTasks} from "../redux/actions/tasks.actions";
 
-type fu = {
+type NotePadProps = {
   task: TaskType;
 }
-
-const NotePad: React.FC<TaskType> = (props) => {
-  const { notes } = props;
+const NotePad: React.FC<NotePadProps> = (props) => {
+  const { task } = props;
 
   return (
     <div className="notepad">
@@ -19,7 +18,7 @@ const NotePad: React.FC<TaskType> = (props) => {
       <textarea 
         onChange={() => null}
         className="notepad__notes"
-        value={notes}
+        value={task.notes}
       />
     </div>
   );
@@ -27,9 +26,8 @@ const NotePad: React.FC<TaskType> = (props) => {
 
 const mapStateToProps = (state: any) => {
   const task = getCurrentTask(state);
-  console.log(task);
   return {
-    ...task,
+    task,
   }
 }
 
