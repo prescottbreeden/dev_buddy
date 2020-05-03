@@ -39,24 +39,45 @@ body {
 .notepad {
   height: 100%;
   width: 50rem;
-  border: .1rem solid grey; }
+  border: .1rem solid grey;
+  display: flex;
+  flex-direction: column; }
   .notepad__title {
     font-size: 2rem;
     font-weight: 100;
     letter-spacing: 1px;
-    padding: .5rem;
+    padding: .9rem;
     text-align: center;
-    height: 3.5rem; }
+    border-bottom: 1px solid grey; }
+    .notepad__title:hover {
+      cursor: pointer; }
   .notepad__notes {
-    width: 100%;
     background-color: #eee;
     font-size: 1.6rem;
-    height: calc(100% - 3.5rem);
     color: black;
     padding: 1rem;
     resize: none;
     font-family: fantasy;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    transition: all .5s; }
+  .notepad__description {
+    color: black;
+    padding: 1rem;
+    background-color: #eee;
+    font-size: 1.6rem;
+    font-family: fantasy;
+    letter-spacing: 1px;
+    resize: none;
+    transition: all .5s; }
+  .notepad__stats {
+    color: black;
+    padding: 1rem;
+    font-size: 1.6rem;
+    background-color: transparent;
+    font-family: fantasy;
+    letter-spacing: 1px;
+    resize: none;
+    transition: all .5s; }
 
 .container {
   display: flex;

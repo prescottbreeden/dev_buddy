@@ -1,5 +1,6 @@
 export interface TaskType {
   id: string;
+  description: string;
   name: string;
   relatedFeature: string;
   priority: number;
@@ -9,4 +10,5 @@ export interface TaskType {
   startDate?: Date;
   completedDate?: Date;
   notes: string;
+  stats: any;
 }
