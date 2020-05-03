@@ -1,7 +1,7 @@
 import {TaskPayload} from "../../types/TaskPayload.type";
 
 // feature name
-export const TASKS = `[Tasks]`;
+export const TASKS = '[Tasks]';
 
 // action types
 export const FETCH_TASKS = `${TASKS} FETCH`;

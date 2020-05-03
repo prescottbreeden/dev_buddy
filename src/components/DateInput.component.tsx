@@ -15,6 +15,7 @@ const DateInput: React.FC<DateInputProps> = (props) => {
         name={name}
         type="text"
         value={value}
+        onChange={() => null}
       />
       <label className="date-input__label" htmlFor="">
         {name}

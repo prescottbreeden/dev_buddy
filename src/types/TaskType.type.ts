@@ -1,4 +1,5 @@
 export interface TaskType {
+  id: string;
   name: string;
   relatedFeature: string;
   priority: number;
@@ -7,4 +8,5 @@ export interface TaskType {
   completed: boolean;
   startDate?: Date;
   completedDate?: Date;
+  notes: string;
 }

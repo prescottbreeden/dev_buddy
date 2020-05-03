@@ -5,11 +5,13 @@ import {tasksReducer} from "./reducers/tasks.reducers";
 import {loaderReducer} from "./reducers/loader.reducers";
 import {notificationsReducer} from "./reducers/notification.reducers";
 import {DevTools} from "../components/DevTools";
+import {currentTaskReducer} from "./reducers/currentTask.reducers";
 
 const rootReducer = combineReducers({
   tasks: tasksReducer,
   loader: loaderReducer,
   notification: notificationsReducer,
+  currentTask: currentTaskReducer,
 });
 
 const featureMiddleware: any = [

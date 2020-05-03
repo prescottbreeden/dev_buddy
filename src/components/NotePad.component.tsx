@@ -1,17 +1,43 @@
 import React from "react";
+import { connect } from "react-redux";
+import { getCurrentTask } from "../redux/selectors/tasks.selectors";
+import { TaskType } from "../types/TaskType.type";
+import {setTasks} from "../redux/actions/tasks.actions";
 
-const NotePad: React.FC = () => {
+type fu = {
+  task: TaskType;
+}
+
+const NotePad: React.FC<TaskType> = (props) => {
+  const { notes } = props;
+
   return (
     <div className="notepad">
       <div className="notepad__header">
         <h3 className="notepad__title">Notepad</h3>
       </div>
-      <div className="notepad__notes">
-        These are my notes... There are many notes like them... But these are my
-        notes...
-      </div>
+      <textarea 
+        onChange={() => null}
+        className="notepad__notes"
+        value={notes}
+      />
     </div>
   );
 };
 
-export default NotePad;
+const mapStateToProps = (state: any) => {
+  const task = getCurrentTask(state);
+  console.log(task);
+  return {
+    ...task,
+  }
+}
+
+const dispatchProps = {
+  setTasks,
+}
+
+export default connect(
+  mapStateToProps,
+  dispatchProps
+)(NotePad);

@@ -3,6 +3,7 @@ import { TaskType } from "../../types/TaskType.type";
 
 const initState: TaskType[] = [
   {
+    id: '1',
     name: "dingoes",
     relatedFeature: "dashboard",
     priority: 1,
@@ -11,8 +12,10 @@ const initState: TaskType[] = [
     completed: true,
     startDate: new Date(Date.now()),
     completedDate: new Date(Date.now()),
+    notes: 'These are my notes, there are many notes like them, but these are mine',
   },
   {
+    id: '2',
     name: "llamas",
     relatedFeature: "dashboard",
     priority: 1,
@@ -20,8 +23,10 @@ const initState: TaskType[] = [
     blocked: true,
     completed: false,
     completedDate: undefined,
+    notes: '',
   },
   {
+    id: '3',
     name: "flamingos",
     relatedFeature: "dashboard",
     priority: 1,
@@ -29,6 +34,7 @@ const initState: TaskType[] = [
     blocked: false,
     completed: false,
     completedDate: undefined,
+    notes: '',
   },
 ];
 
