@@ -2,24 +2,34 @@ import React from "react";
 import { connect, useDispatch } from "react-redux";
 import { TaskType } from "../types/TaskType.type";
 import { getTasks } from "../redux/selectors/tasks.selectors";
-import { mergeObjects, insertItem } from "../util/misc";
+import {  mergeObjects, insertItem } from "../util/misc";
 import { SET_TASKS } from "../redux/actions/tasks.actions";
-import { curry, pipe } from "ramda";
 import Task from "./Task.component";
+import {pipe} from "ramda";
 
 type TasksProps = {
-  tasks?: TaskType[];
+  tasks: TaskType[];
 };
 const Tasks: React.FC<TasksProps> = (props) => {
   const dispatch = useDispatch();
   const { tasks } = props;
 
-  const handleTaskChange = curry((task: TaskType, data: Partial<TaskType>) => {
-    if (tasks) {
-      const mergeAndUpsert = pipe(mergeObjects(task), insertItem(tasks, "id"));
-      dispatch({ type: SET_TASKS, payload: mergeAndUpsert(data) });
-    }
-  });
+  /* const handleTaskChange = generateOnChange(tasks, "id", dispatch, SET_TASKS); */
+  const generateHandleChange = (allTasks: TaskType[]) => (task: TaskType) => (
+    data: Partial<TaskType>
+  ) => {
+    const mergeAndUpsert = pipe(
+      mergeObjects<TaskType>(task),
+      insertItem<TaskType>(allTasks, "id")
+    );
+
+    dispatch({
+      type: SET_TASKS,
+      payload: mergeAndUpsert(data),
+    });
+  };
+
+  const handleTaskChange = generateHandleChange(tasks);
 
   return (
     <div className="tasks">
