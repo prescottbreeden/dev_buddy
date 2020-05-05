@@ -27,6 +27,6 @@ export const emptyTask = (): TaskType => {
     originalEstimate: '0',
     priority: 1,
     relatedFeature: "type to edit",
-    startedDate: new Date(2020, 4, 1, 12),
+    startedDate: new Date(Date.now()),
   };
 };
