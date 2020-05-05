@@ -26,56 +26,45 @@ const Task: React.FC<TaskProps> = (props) => {
     return false;
   };
 
+  const getActions = () => {
+    return task.isActive
+      ? <button className="tasks__btn">Start</button>
+      : <button className="tasks__btn tasks__btn--stop">Stop</button>
+  }
+
   return (
     <div
       className="tasks__row"
       onClick={updateCurrentTask}
       style={isCurrentTask() ? { border: ".1rem solid steelblue" } : {}}
     >
-      <div className="tasks__col">
+      <div className="tasks__col tasks__description">
         <Input
           name="name"
-          className="task__input"
+          className="tasks__input"
           onChange={onChange(task)}
           value={task && task.name}
         />
-        <p className="task__name">{task && task.name}</p>
       </div>
-      <div className="tasks__col">
-        <p className="task__name">{task && task.relatedFeature}</p>
-      </div>
-      <div className="tasks__col tasks__checkbox">
-        <input
-          name="started"
-          className="checkbox"
-          type="checkbox"
-          onChange={() => null}
-          checked={task && task.started}
+      <div className="tasks__col tasks__feature">
+        <Input
+          name="relatedFeature"
+          className="tasks__input"
+          onChange={onChange(task)}
+          value={task && task.relatedFeature}
         />
       </div>
-      <div className="tasks__col tasks__checkbox">
-        <input
-          name="started"
-          className="checkbox"
-          type="checkbox"
-          onChange={() => null}
-          checked={task && task.blocked}
-        />
-      </div>
-      <div className="tasks__col tasks__checkbox">
-        <input
-          name="completed"
-          className="checkbox"
-          type="checkbox"
-          onChange={() => null}
-          checked={task && task.completed}
-        />
-      </div>
-      <div className="tasks__col tasks__completed-info">
-        <p className="task__name">{task.completedDate?.toDateString()}</p>
+      <div className="tasks__col tasks__actions">
+        {getActions()}
+        <button className="tasks__btn tasks__btn--complete">Complete</button>
+        
       </div>
       <div className="tasks__col tasks__icon">
-        {isCurrentTask() && <h1 className="tasks__icon--svg">></h1>}
+        {!task.isActive && <h1 className="tasks__icon--svg play">></h1>}
+        {task.isActive && <h1 className="tasks__icon--svg pause">||</h1>}
+      </div>
+      <div className="tasks__col tasks__time">
+        {new Date(Date.now()).toLocaleTimeString()}
       </div>
     </div>
   );

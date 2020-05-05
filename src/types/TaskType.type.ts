@@ -1,14 +1,15 @@
 export interface TaskType {
   id: string;
-  description: string;
-  name: string;
-  relatedFeature: string;
-  priority: number;
-  started: boolean;
-  blocked: boolean;
+  accumulatedTime: number;
   completed: boolean;
-  startDate?: Date;
   completedDate?: Date;
+  description: string;
+  isActive: boolean;
+  name: string;
   notes: string;
-  stats: any;
+  originalEstimate: number;
+  priority: number;
+  relatedFeature: string;
+  started: boolean;
+  startedDate?: Date;
 }

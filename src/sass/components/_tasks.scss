@@ -1,6 +1,5 @@
 .tasks {
-  text-transform: capitalize;
-  padding-left: 1.2rem;
+  width: 100%;
 
   &__header {
     display: flex;
@@ -24,9 +23,9 @@
   &__row {
     display: flex;
     align-items: center;
-    font-size: 1.8rem;
-    font-weight: 100;
     border: 1px solid transparent;
+    width: 100%;
+    height: 8rem;
     
     &:hover {
       border: 1px solid steelblue;
@@ -39,13 +38,36 @@
     // border: 1px dashed green;
   }
 
+  &__description {
+    width: 45%;
+  }
+
+  &__feature {
+    width: 25%;
+  }
+
+  &__input {
+    background-color: #333;
+    outline: none;
+    border: none;
+    color: #eee;
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-around;
+    width: 28rem;
+    text-align: center;
+  }
+
   &__checkbox {
     width: 12rem;
     text-align: center;
   }
 
   &__completed-info {
-    width: 15rem;
+    width: 20rem;
   }
 
   &__icon {
@@ -61,15 +83,50 @@
       color: steelblue;
     }
   }
+  .play {
+    font-size: 2.4rem;
+  }
+
+  .pause {
+    font-size: 1.6rem;
+  }
 
   &__add-btn {
     background-color: green;
-    border: none;
     outline: none;
     padding: .5rem 1rem;
+    border: none;
     border-radius: 3px;
     color: #eee;
     text-transform: capitalize;
     font-size: 2rem;
+  }
+
+  &__btn {
+    background-color: olivedrab;
+    padding: 1rem 2rem;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    color: #eee;
+    // box-shadow: .2rem .1rem 0rem rgba(black, .9);
+    width: 10rem;
+    height: 3.5rem;
+
+    &--stop {
+      background-color: darken(orangered, 20);
+    }
+
+    &--complete {
+      background-color: steelblue;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:active {
+      box-shadow: none;
+    }
   }
 }

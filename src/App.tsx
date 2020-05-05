@@ -12,11 +12,7 @@ function App() {
     <Provider store={store}>
       <Header />
       <div className="container">
-        <div className="main-area">
-          <div className="section">
-            <Tasks />
-          </div>
-        </div>
+        <Tasks />
         <NotePad />
       </div>
       <Footer />
