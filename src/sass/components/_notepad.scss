@@ -50,4 +50,29 @@
     resize: none;
     transition: all .5s;
   }
+
+  &__label {
+    min-width: 30%;
+    color: #eee;
+  }
+
+  &__row {
+    width : 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__stat {
+    color: #eee;
+    text-align: left;
+    width: 60%;
+  }
+
+  &__input {
+    background-color: transparent;
+    color: #eee;
+    outline: none;
+    border: none;
+  }
 }

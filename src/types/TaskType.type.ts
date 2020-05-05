@@ -9,7 +9,7 @@ export interface TaskType {
   isActive: boolean;
   name: string;
   notes: string;
-  originalEstimate: number;
+  originalEstimate: string;
   priority: number;
   relatedFeature: string;
   startedDate: Date;
@@ -24,7 +24,7 @@ export const emptyTask = (): TaskType => {
     isActive: false,
     name: "type to edit",
     notes: "type to edit",
-    originalEstimate: 0,
+    originalEstimate: '0',
     priority: 1,
     relatedFeature: "type to edit",
     startedDate: new Date(2020, 4, 1, 12),

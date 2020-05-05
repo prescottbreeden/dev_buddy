@@ -12,7 +12,7 @@ const initState: TaskType[] = [
     name: "create generic workflow and approval components",
     notes:
       "These are my notes, there are many notes like them, but these are mine",
-    originalEstimate: 0,
+    originalEstimate: '0',
     priority: 1,
     relatedFeature: "Display of Needs Assessment Results",
     startedDate: new Date(2020, 4, 1, 12),

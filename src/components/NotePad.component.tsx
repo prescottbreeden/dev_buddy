@@ -5,6 +5,7 @@ import { TaskType } from "../types/TaskType.type";
 import { setTasks } from "../redux/actions/tasks.actions";
 import {buildOnChange} from "../util/misc";
 import Textarea from "./Textarea.component";
+import Input from "./Input.component";
 
 type NotePadProps = {
   task: TaskType;
@@ -35,6 +36,16 @@ const NotePad: React.FC<NotePadProps> = (props) => {
       ? { flexGrow: 1 }
       : { height: 0, overflow: "hidden", padding: 0, border: "none" };
   };
+
+  const getStatus = () => {
+    if (task.isActive) {
+      return 'In Progress';
+    }
+    if (task.completed) {
+      return 'Task Completed'
+    }
+    return 'Ready to Start'
+  }
 
   return (
     <div className="notepad">
@@ -71,7 +82,29 @@ const NotePad: React.FC<NotePadProps> = (props) => {
         <h3 className="notepad__title">Stats</h3>
       </div>
       <div className="notepad__stats" style={viewCard("stats")}>
-        stats
+        {task && 
+          <>
+            <div className="notepad__row">
+              <p className="notepad__label">Created</p>
+              <p className="notepad__stat">{task && task.startedDate.toLocaleDateString()}</p>
+            </div>
+            <div className="notepad__row">
+              <p className="notepad__label">Estimate</p>
+              <Input
+                name="originalEstimate"
+                className="notepad__input notepad__stat"
+                onChange={onChange(task)}
+                value={task && task.originalEstimate}
+              />
+            </div>
+            <div className="notepad__row">
+              <p className="notepad__label">Status</p>
+              <p className="notepad__stat">
+                {getStatus()}
+              </p>
+            </div>
+          </>
+        }
       </div>
     </div>
   );
