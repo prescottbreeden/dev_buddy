@@ -4,6 +4,7 @@ import { SET_CURRENT_TASK } from "../redux/actions/currenttask.actions";
 import { connect, useDispatch } from "react-redux";
 import { getCurrentTask } from "../redux/selectors/tasks.selectors";
 import Input from "./Input.component";
+import Icon from "./Icon.component";
 
 interface TaskProps {
   onChange: Function;
@@ -26,10 +27,14 @@ const Task: React.FC<TaskProps> = (props) => {
     return false;
   };
 
+  const toggleComplete = () => {
+    onChange(task)({ completed: !task.completed });
+  }
+
   const getActions = () => {
-    return task.isActive
-      ? <button className="tasks__btn">Start</button>
-      : <button className="tasks__btn tasks__btn--stop">Stop</button>
+    return task.completed
+      ? <button onClick={toggleComplete} className="tasks__btn">Re-Open</button>
+      : <button onClick={toggleComplete} className="tasks__btn">Complete</button>;
   }
 
   return (
@@ -56,12 +61,18 @@ const Task: React.FC<TaskProps> = (props) => {
       </div>
       <div className="tasks__col tasks__actions">
         {getActions()}
-        <button className="tasks__btn tasks__btn--complete">Complete</button>
-        
       </div>
       <div className="tasks__col tasks__icon">
-        {!task.isActive && <h1 className="tasks__icon--svg play">></h1>}
-        {task.isActive && <h1 className="tasks__icon--svg pause">||</h1>}
+        {!task.completed && !task.isActive && (
+          <div className="tasks__icon--btn">
+            <Icon title="play" className="tasks__icon--svg play" />
+          </div>
+        )}
+        {!task.completed && task.isActive && (
+          <div className="tasks__icon--btn">
+            <Icon title="pause" className="tasks__icon--svg pause" />
+          </div>
+        )}
       </div>
       <div className="tasks__col tasks__time">
         {new Date(Date.now()).toLocaleTimeString()}
