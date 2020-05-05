@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
-import { TaskType } from "../types/TaskType.type";
+import { TaskType, emptyTask } from "../types/TaskType.type";
 import { getTasks } from "../redux/selectors/tasks.selectors";
 import { buildOnChange } from "../util/misc";
 import { setTasks } from "../redux/actions/tasks.actions";
@@ -15,6 +15,13 @@ const Tasks: React.FC<TasksProps> = (props) => {
   const { tasks } = props;
 
   const onChange = buildOnChange<TaskType>(tasks, "id", setTasks, dispatch);
+
+  const createTask = () => {
+    const newTask = emptyTask();
+    newTask.id = Math.random().toString(36).substring(7);
+    const updated = [...tasks, newTask];
+    dispatch(setTasks(updated));
+  }
 
   return (
     <div className="tasks">
@@ -37,7 +44,7 @@ const Tasks: React.FC<TasksProps> = (props) => {
           return <Task key={index} task={task} onChange={onChange} />;
         })}
       <div className="tasks__col tasks__icon">
-        <div className="tasks__icon--btn">
+        <div onClick={createTask} className="tasks__icon--btn">
           <Icon title="add" className="tasks__icon--svg add"/>
         </div>
       </div>

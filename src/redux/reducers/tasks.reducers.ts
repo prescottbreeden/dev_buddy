@@ -3,26 +3,9 @@ import { TaskType } from "../../types/TaskType.type";
 
 const initState: TaskType[] = [
   {
-    id: "1",
-    accumulatedTime: 0,
+    id: '',
+    accumulatedTime: 258000,
     completed: false,
-    completedDate: new Date(Date.now()),
-    description: "create generic workflow and approval components",
-    isActive: true,
-    name: "create generic workflow and approval components",
-    notes:
-      "These are my notes, there are many notes like them, but these are mine",
-    originalEstimate: 0,
-    priority: 1,
-    relatedFeature: "Display of Needs Assessment Results",
-    started: true,
-    startedDate: new Date(Date.now()),
-  },
-  {
-    id: "2",
-    accumulatedTime: 0,
-    completed: false,
-    completedDate: new Date(Date.now()),
     description: "create generic workflow and approval components",
     isActive: false,
     name: "create generic workflow and approval components",
@@ -31,30 +14,15 @@ const initState: TaskType[] = [
     originalEstimate: 0,
     priority: 1,
     relatedFeature: "Display of Needs Assessment Results",
-    started: true,
-    startedDate: new Date(Date.now()),
-  },
-  {
-    id: "3",
-    accumulatedTime: 0,
-    completed: true,
-    completedDate: new Date(Date.now()),
-    description: "create generic workflow and approval components",
-    isActive: false,
-    name: "create generic workflow and approval components",
-    notes:
-      "These are my notes, there are many notes like them, but these are mine",
-    originalEstimate: 0,
-    priority: 1,
-    relatedFeature: "Display of Needs Assessment Results",
-    started: true,
-    startedDate: new Date(Date.now()),
-  },
+    startedDate: new Date(2020, 4, 1, 12),
+  }
+
 ];
 
 export const tasksReducer = (tasks = initState, action: any) => {
   switch (action.type) {
     case SET_TASKS:
+      console.log(action.payload);
       return action.payload;
 
     default:

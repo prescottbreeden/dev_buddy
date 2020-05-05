@@ -10,6 +10,21 @@ export interface TaskType {
   originalEstimate: number;
   priority: number;
   relatedFeature: string;
-  started: boolean;
-  startedDate?: Date;
+  startedDate: Date;
 }
+
+export const emptyTask = (): TaskType => {
+  return {
+    id: '',
+    accumulatedTime: 0,
+    completed: false,
+    description: "type to edit",
+    isActive: false,
+    name: "type to edit",
+    notes: "type to edit",
+    originalEstimate: 0,
+    priority: 1,
+    relatedFeature: "type to edit",
+    startedDate: new Date(2020, 4, 1, 12),
+  };
+};
