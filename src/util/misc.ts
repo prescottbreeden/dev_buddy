@@ -39,3 +39,4 @@ export const buildOnChange = <T>(
   )(data);
 };
 
+export const newId = () => Math.random().toString(36).substring(7);

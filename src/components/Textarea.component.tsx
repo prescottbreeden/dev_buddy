@@ -1,16 +1,17 @@
 import React from "react";
 import { curry } from "ramda";
 
-type InputProps = {
+type TextAreaProps = {
   className: string;
   disabled?: boolean;
   name: string;
   onChange?: Function;
   placeholder?: string;
   value: string | number;
+  style?: any;
 };
 
-export const Input: React.FC<InputProps> = (props) => {
+export const Textarea: React.FC<TextAreaProps> = (props) => {
   const {
     className,
     disabled,
@@ -18,9 +19,10 @@ export const Input: React.FC<InputProps> = (props) => {
     onChange,
     placeholder,
     value,
+    style,
   } = props;
 
-  const handleChange = curry((event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = curry((event: any) => {
     const value = event.target.value;
     if (disabled) return;
     let data: {
@@ -32,7 +34,8 @@ export const Input: React.FC<InputProps> = (props) => {
   });
 
   return (
-    <input
+    <textarea
+      style={style}
       className={className}
       disabled={disabled}
       name={name}
@@ -43,4 +46,4 @@ export const Input: React.FC<InputProps> = (props) => {
   );
 };
 
-export default Input;
+export default Textarea;

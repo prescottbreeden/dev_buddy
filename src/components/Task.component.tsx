@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { TaskType } from "../types/TaskType.type";
-import { SET_CURRENT_TASK } from "../redux/actions/currenttask.actions";
+import { setCurrentTask } from "../redux/actions/currenttask.actions";
 import { connect, useDispatch } from "react-redux";
 import { getCurrentTask } from "../redux/selectors/tasks.selectors";
 import Input from "./Input.component";
@@ -17,7 +17,7 @@ const Task: React.FC<TaskProps> = (props) => {
   const { currentTask, onChange, task } = props;
 
   const [session, setSession] = useState(0);
-  const [, setState] = useState();
+  const [, setState] = useState(); // force state update hack
 
   const getElapsed = () => {
     const now = new Date().getTime();
@@ -25,7 +25,7 @@ const Task: React.FC<TaskProps> = (props) => {
   };
 
   const updateCurrentTask = () => {
-    dispatch({ type: SET_CURRENT_TASK, payload: task });
+    dispatch(setCurrentTask(task));
   };
 
   const isCurrentTask = () => {

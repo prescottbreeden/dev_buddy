@@ -1,9 +1,10 @@
 import { SET_TASKS } from "../actions/tasks.actions";
 import { TaskType } from "../../types/TaskType.type";
+import {newId} from "../../util/misc";
 
 const initState: TaskType[] = [
   {
-    id: '',
+    id: newId(),
     accumulatedTime: 258000,
     completed: false,
     description: "create generic workflow and approval components",
@@ -22,7 +23,6 @@ const initState: TaskType[] = [
 export const tasksReducer = (tasks = initState, action: any) => {
   switch (action.type) {
     case SET_TASKS:
-      console.log(action.payload);
       return action.payload;
 
     default:

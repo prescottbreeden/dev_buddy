@@ -1,14 +1,20 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { getCurrentTask } from "../redux/selectors/tasks.selectors";
+import { connect, useDispatch } from "react-redux";
+import { getCurrentTask, getTasks } from "../redux/selectors/tasks.selectors";
 import { TaskType } from "../types/TaskType.type";
 import { setTasks } from "../redux/actions/tasks.actions";
+import {buildOnChange} from "../util/misc";
+import Textarea from "./Textarea.component";
 
 type NotePadProps = {
   task: TaskType;
+  tasks: TaskType[];
 };
 const NotePad: React.FC<NotePadProps> = (props) => {
-  const { task } = props;
+  const dispatch = useDispatch();
+  const { task, tasks } = props;
+
+  const onChange = buildOnChange<TaskType>(tasks, "id", setTasks, dispatch);
 
   const [card, setCard] = useState("stats");
   const cards = ["description", "notes", "stats"];
@@ -16,9 +22,6 @@ const NotePad: React.FC<NotePadProps> = (props) => {
   const handleCardChange = (view: string) => {
     if (card === view) {
       const index = cards.indexOf(view);
-      /* console.log('current card', card); */
-      /* console.log('view', view) */
-      /* console.log('index', index); */
       if (index > -1 && index < cards.length - 1) {
         setCard(cards[index + 1]);
       }
@@ -41,8 +44,9 @@ const NotePad: React.FC<NotePadProps> = (props) => {
       >
         <h3 className="notepad__title">Description</h3>
       </div>
-      <textarea
-        onChange={() => null}
+      <Textarea
+        name="description"
+        onChange={onChange(task)}
         className="notepad__description"
         value={task && task.description}
         style={viewCard("description")}
@@ -53,8 +57,9 @@ const NotePad: React.FC<NotePadProps> = (props) => {
       >
         <h3 className="notepad__title">Notepad</h3>
       </div>
-      <textarea
-        onChange={() => null}
+      <Textarea
+        name="notes"
+        onChange={onChange(task)}
         className="notepad__notes"
         value={task && task.notes}
         style={viewCard("notes")}
@@ -74,8 +79,10 @@ const NotePad: React.FC<NotePadProps> = (props) => {
 
 const mapStateToProps = (state: any) => {
   const task = getCurrentTask(state);
+  const tasks = getTasks(state);
   return {
     task,
+    tasks
   };
 };
 

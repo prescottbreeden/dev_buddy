@@ -18,7 +18,6 @@ const Tasks: React.FC<TasksProps> = (props) => {
 
   const createTask = () => {
     const newTask = emptyTask();
-    newTask.id = Math.random().toString(36).substring(7);
     const updated = [...tasks, newTask];
     dispatch(setTasks(updated));
   }

@@ -1,3 +1,5 @@
+import {newId} from "../util/misc";
+
 export interface TaskType {
   id: string;
   accumulatedTime: number;
@@ -15,7 +17,7 @@ export interface TaskType {
 
 export const emptyTask = (): TaskType => {
   return {
-    id: '',
+    id: newId(),
     accumulatedTime: 0,
     completed: false,
     description: "type to edit",
