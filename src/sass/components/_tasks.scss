@@ -1,8 +1,23 @@
 .tasks {
   width: 100%;
+  overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 1.2rem;
+    }
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(grey, 0.5);
+      border-radius: 3px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+      // box-shadow: inset 0 0 6px rgba(grey, 1);
+      background: rgba(grey, 0.5);
+    }
 
   &__header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     font-size: 1.8rem;
     font-weight: 100;
@@ -21,13 +36,15 @@
 
   &__row {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid transparent;
     width: 100%;
     height: 8rem;
 
     &:hover {
-      border: 1px solid steelblue;
+      border-top: 1px solid steelblue;
+      border-bottom: 1px solid steelblue;
     }
   }
 
@@ -37,7 +54,7 @@
   }
 
   &__description {
-    width: 50%;
+    width: 100%;
   }
 
   &__feature {
@@ -50,11 +67,17 @@
     border: none;
     color: #eee;
     width: 100%;
+    margin: 0 1rem;
+
+    &--title {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
   }
 
   &__actions {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     text-align: center;
     width: 15rem;
 
@@ -65,17 +88,35 @@
       width: 20rem;
     }
   }
-  &__checkbox {
-    width: 12rem;
+  &__options {
+    display: flex;
+  }
+  &__time {
     text-align: center;
+    font-weight: 100;
+    font-size: 1.6rem;
+    cursor: default;
+    width: 25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  &__completed-info {
-    width: 20rem;
-  }
+
   &__icon {
-    width: 3rem;
+    position: relative;
+    margin: 0 2rem;
+    display: flex;
+    justify-content: space-around;
     text-align: center;
-    margin-right: 2rem;
+    height: 2rem;
+    width: 2rem;
+
+    &--add {
+      width: 3rem;
+      text-align: center;
+      margin-right: 2rem;
+    }
+
     &--svg {
       position: absolute;
       top: 50%;
@@ -94,13 +135,22 @@
     }
   }
   .play {
-    fill: green;
+    &:hover {
+      fill: green;
+    }
   }
   .pause {
-    fill: darken(orangered, 15);
+    &:hover {
+      fill: darken(orangered, 15);
+    }
   }
   .add {
     margin: 1.6rem 1rem;
+  }
+  .trash {
+    &:hover {
+      fill: darken(orangered, 15);
+    }
   }
 
   &__btn {
@@ -122,10 +172,11 @@
     }
   }
 
-  &__time {
-    text-align: center;
-    font-weight: 100;
-    font-size: 1.6rem;
-    cursor: default;
-  }
 }
+  // &__checkbox {
+  //   width: 12rem;
+  //   text-align: center;
+  // }
+  // &__completed-info {
+  //   width: 20rem;
+  // }

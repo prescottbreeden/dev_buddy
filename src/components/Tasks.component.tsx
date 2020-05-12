@@ -17,8 +17,7 @@ const Tasks: React.FC<TasksProps> = (props) => {
   const onChange = buildOnChange<TaskType>(tasks, "id", setTasks, dispatch);
 
   const createTask = () => {
-    const newTask = emptyTask();
-    const updated = [...tasks, newTask];
+    const updated = [...tasks, emptyTask()];
     dispatch(setTasks(updated));
   }
 
@@ -28,21 +27,20 @@ const Tasks: React.FC<TasksProps> = (props) => {
         <div className="tasks__col tasks__description">
           <p className="tasks__title">Tasks to complete</p>
         </div>
-        <div className="tasks__col tasks__feature">
-          <p className="tasks__title">Related Feature</p>
-        </div>
-        <div className="tasks__col tasks__actions--title">
-          <p className="tasks__title">Actions</p>
-        </div>
-        <div className="tasks__col tasks__time">
-          <p className="tasks__title">Work Effort</p>
+        <div className="tasks__options">
+          <div className="tasks__col tasks__time">
+            <p className="tasks__title">Work Effort</p>
+          </div>
+          <div className="tasks__col tasks__actions">
+            <p className="tasks__title">Actions</p>
+          </div>
         </div>
       </div>
       {tasks &&
         tasks.map((task: any, index: number) => {
           return <Task key={index} task={task} onChange={onChange} />;
         })}
-      <div className="tasks__col tasks__icon">
+      <div className="tasks__col tasks__icon--add">
         <div onClick={createTask} className="tasks__icon--btn">
           <Icon title="add" className="tasks__icon--svg add"/>
         </div>

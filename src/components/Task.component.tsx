@@ -5,6 +5,7 @@ import { connect, useDispatch } from "react-redux";
 import { getCurrentTask } from "../redux/selectors/tasks.selectors";
 import Input from "./Input.component";
 import Icon from "./Icon.component";
+import {deleteTask} from "../redux/actions/tasks.actions";
 
 interface TaskProps {
   onChange: Function;
@@ -27,6 +28,10 @@ const Task: React.FC<TaskProps> = (props) => {
   const updateCurrentTask = () => {
     dispatch(setCurrentTask(task));
   };
+
+  const removeTask = () => {
+    dispatch(deleteTask(task));
+  }
 
   const isCurrentTask = () => {
     if (currentTask && task) {
@@ -65,12 +70,6 @@ const Task: React.FC<TaskProps> = (props) => {
     }
   };
 
-  const getActions = () => {
-    return task.completed
-      ? <button onClick={toggleComplete} className="tasks__btn">Re-Open</button>
-      : <button onClick={toggleComplete} className="tasks__btn">Complete</button>;
-  };
-
   const getTime = (t: number) => {
     const days = Math.floor(t / (1000 * 60 * 60 * 24)); 
     const hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
@@ -84,15 +83,13 @@ const Task: React.FC<TaskProps> = (props) => {
       onClick={updateCurrentTask}
       style={isCurrentTask() ? { border: ".1rem solid steelblue" } : {}}
     >
-      <div className="tasks__col tasks__description">
+      <div className="tasks__description">
         <Input
           name="name"
-          className="tasks__input"
+          className="tasks__input tasks__input--title"
           onChange={onChange(task)}
           value={task && task.name}
         />
-      </div>
-      <div className="tasks__col tasks__feature">
         <Input
           name="relatedFeature"
           className="tasks__input"
@@ -100,23 +97,34 @@ const Task: React.FC<TaskProps> = (props) => {
           value={task && task.relatedFeature}
         />
       </div>
-      <div className="tasks__col tasks__actions">
-        {getActions()}
-      </div>
-      <div className="tasks__col tasks__icon">
-        {!task.completed && !task.isActive && (
-          <div onClick={toggleActive} className="tasks__icon--btn">
-            <Icon title="play" className="tasks__icon--svg play" />
+      <div className="tasks__options">
+        <div className="tasks__time">
+          {getTime(task.accumulatedTime)}
+          {!task.completed && 
+            <div onClick={toggleActive} className="tasks__icon">
+              {!task.isActive ? (
+                <Icon title="play" className="tasks__icon--svg play" />
+              ) : (
+                <Icon title="pause" className="tasks__icon--svg pause" />
+              )}
+            </div>
+          }
+        </div>
+        <div className="tasks__actions">
+          {!task.completed && (
+            <div onClick={toggleComplete} className="tasks__icon">
+              <Icon title="unchecked" className="tasks__icon--svg" />
+            </div>
+          )}
+          {task.completed && (
+            <div onClick={toggleComplete} className="tasks__icon">
+              <Icon title="checked" className="tasks__icon--svg" />
+            </div>
+          )}
+          <div onClick={removeTask} className="tasks__icon">
+            <Icon title="trash" className="tasks__icon--svg trash" />
           </div>
-        )}
-        {!task.completed && task.isActive && (
-          <div onClick={toggleActive} className="tasks__icon--btn">
-            <Icon title="pause" className="tasks__icon--svg pause" />
-          </div>
-        )}
-      </div>
-      <div className="tasks__col tasks__time">
-        {getTime(task.accumulatedTime)}
+        </div>
       </div>
     </div>
   );

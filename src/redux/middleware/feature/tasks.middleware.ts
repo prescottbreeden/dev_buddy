@@ -22,7 +22,6 @@ export const tasksMiddleware = () => (next: Function) => (
         })
       );
       next(setLoader({ state: true, feature: TASKS }));
-
       break;
 
     case `${TASKS} ${API_SUCCESS}`:
