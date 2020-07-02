@@ -2,6 +2,7 @@
   "name": "date_watcher",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -10,6 +11,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "electron-is-dev": "^1.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -17,6 +19,7 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "precommit": "lint-staged",
     "getstart": "yarn & node-sass src/sass/main.scss src/index.css & react-scripts start",
     "test:ci": "react-scripts test --watchAll=false --reporters=default --reporters=jest-junit",
@@ -49,12 +52,16 @@
     "@types/ramda": "^0.27.4",
     "@types/react-redux": "^7.1.7",
     "@types/redux-devtools": "^3.0.47",
+    "concurrently": "^5.2.0",
+    "electron": "^9.0.5",
+    "electron-builder": "^22.7.0",
     "husky": "^4.2.5",
     "lodash": "^4.17.15",
     "node-sass": "^4.14.0",
     "prettier": "^2.0.5",
     "ramda": "^0.27.0",
     "redux-devtools": "^3.5.0",
-    "redux-devtools-inspector": "^0.11.3"
+    "redux-devtools-inspector": "^0.11.3",
+    "wait-on": "^5.0.1"
   }
 }

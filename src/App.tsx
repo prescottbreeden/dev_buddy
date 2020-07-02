@@ -1,7 +1,6 @@
 import React from "react";
 import { Header } from "./layouts/Header.layout";
 import { Footer } from "./layouts/Footer.layout";
-import CreateEvent from "./components/CreateEvent.component";
 import Tasks from "./components/Tasks.component";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
