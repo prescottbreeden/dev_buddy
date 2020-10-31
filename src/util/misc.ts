@@ -1,5 +1,4 @@
-import * as R from "ramda";
-import * as L from "lodash";
+import { map, pipe, prop, findIndex } from "ramda";
 import { BaseAction } from "../types/BaseAction.type";
 
 export const mergeObjects = <T>(obj1: T) => (obj2: Partial<T>): T => ({
@@ -8,12 +7,15 @@ export const mergeObjects = <T>(obj1: T) => (obj2: Partial<T>): T => ({
 });
 
 export const insertItem = <T>(array: T[], k: keyof T) => (payload: T): T[] => {
-  return L.map(array, (item: T) => (item[k] === payload[k] ? {...payload} : { ...item }));
+  return map(
+    (item: T) => (item[k] === payload[k] ? {...payload} : { ...item }),
+    array
+  );
 };
 
 export const upsertItem = <T>(array: T[], k: keyof T) => (payload: T): T[] => {
-  const payloadValue = L.get(payload, k, -1);
-  const index = L.findIndex(array, (item: any) => item[k] === payloadValue);
+  const payloadValue = prop(k, payload);
+  const index = findIndex((item: any) => item[k] === payloadValue, array);
   return index === -1
     ? [...array, payload]
     : insertItem<T>(array, k)(payload)
@@ -31,7 +33,7 @@ export const buildOnChange = <T>(
   actionCreator: (data: T[]) => BaseAction,
   dispatcher: (action: BaseAction) => void
 ) => (item: T) => (data: Partial<T>) => {
-  return R.pipe(
+  return pipe(
     mergeObjects<T>(item),
     upsertItem<T>(allItems, selector),
     actionCreator,

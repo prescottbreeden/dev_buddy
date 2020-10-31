@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { ipcRenderer } from 'electron';
 import { TaskType } from "../types/TaskType.type";
 import { setCurrentTask } from "../redux/actions/currenttask.actions";
 import { connect, useDispatch } from "react-redux";
 import { getCurrentTask } from "../redux/selectors/tasks.selectors";
+import {deleteTask} from "../redux/actions/tasks.actions";
 import Input from "./Input.component";
 import Icon from "./Icon.component";
-import {deleteTask} from "../redux/actions/tasks.actions";
 
 interface TaskProps {
   onChange: Function;
@@ -53,7 +54,7 @@ const Task: React.FC<TaskProps> = (props) => {
         completed: !task.completed,
       });
     }
-    setState({});
+    /* setState({}); */
   };
 
 
@@ -66,7 +67,7 @@ const Task: React.FC<TaskProps> = (props) => {
         accumulatedTime: getElapsed(),
         isActive: !task.isActive,
       });
-      setState({});
+      /* setState({}); */
     }
   };
 
@@ -76,6 +77,10 @@ const Task: React.FC<TaskProps> = (props) => {
     const minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
     return (`${days}d : ${hours}h : ${minutes}m`);
   }
+
+  useEffect(() => {
+    ipcRenderer.send('test', 'ping');
+  }, [])
 
   return (
     <div

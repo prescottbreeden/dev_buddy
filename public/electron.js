@@ -1,7 +1,7 @@
-const electron = require('electron');
-const { app, BrowserWindow, Tray } = electron;
+const { app, BrowserWindow, Tray, ipcRenderer, ipcMain } = require('electron');
 
 const path = require('path');
+const fs = require('fs');
 const isDev = require('electron-is-dev');
 
 let mainWindow;
@@ -35,6 +35,11 @@ function createWindow() {
 
 app.on('ready', () => {
   createWindow();
+
+  ipcMain.on('test', (event, data) => {
+    console.log(event);
+    console.log(data);
+  })
 });
 
 app.on('window-all-closed', () => {
@@ -48,3 +53,4 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
